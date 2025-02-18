@@ -1,3 +1,4 @@
+"use client"
 import ChatRoom from "@/app/(root)/chat/ChatRoom";
 import {Suspense} from "react";
 
