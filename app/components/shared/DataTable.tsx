@@ -152,9 +152,6 @@ const DataTable =  <TData,TValue>({rowActions, table: tableRef, handleRowClick, 
                                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                 </td>
                             ))}
-                            <td className="ks_table_data ks-wt-tbl-data-sticky">
-                                {flexRender(rowActions, row)}
-                            </td>
                         </tr>
                     ))
             }
