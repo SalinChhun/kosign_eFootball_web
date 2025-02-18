@@ -1,3 +1,4 @@
+/*
 "use client"
 import React, {useEffect, useState} from 'react'
 import {over} from 'stompjs';
@@ -209,4 +210,4 @@ const ChatRoom = () => {
     )
 }
 
-export default ChatRoom
+export default ChatRoom*/
