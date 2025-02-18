@@ -44,7 +44,6 @@
     "zustand": "^4.5.2"
   },
   "devDependencies": {
-    "@types/bootstrap": "^5.2.10",
     "@types/crypto-js": "^4.2.2",
     "@types/node": "^20",
     "@types/react": "18.3.17",
