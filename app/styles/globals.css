@@ -1,4 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
 /* General Navbar Styling */
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.body {
+    /*height: 100vh;*/
+    /*background-image: url('/asset/background-image.jpg');*/
+    /*background-size: 100% 100%;*/
+    /*background-repeat: no-repeat;*/
+    /*background-position: center;*/
+}
 .navbar {
     font-family: PremierSans-Heavy, Arial, Helvetica Neue, Helvetica, sans-serif;
     background-color: #121b30;
