@@ -7,6 +7,7 @@ import {useRouter, useSearchParams} from "next/navigation";
 import {GoogleAuthProvider, signInWithPopup} from "firebase/auth";
 import {auth, provider} from "@/utils/firebase";
 import {Spinner} from "react-bootstrap";
+import {Path} from "@/utils/enum";
 
 export default function LoginForm() {
     const baseUrl = `${process.env.NEXT_PUBLIC_BASE_URL}`;
@@ -50,8 +51,7 @@ export default function LoginForm() {
         try {
 
             const url = new URL('/product', location.href)
-            // url.searchParams.delete('start_date')
-            // url.searchParams.delete('end_date')
+
             console.log("url", url)
             const result = await signIn("credentials", {
                 email: loginRequest.email,
@@ -85,12 +85,8 @@ export default function LoginForm() {
         dispatch({[e.target.name + "Error"]: false})
     }
 
-    // console.log("loginRequest.email", loginRequest.email)
-    // console.log("loginRequest.password", loginRequest.password)
-
-
     const handleGoogleSignIn = async () => {
-        // setIsClickGoogle(true);
+
         try {
             const result = await signInWithPopup(auth, provider);
             const credential = GoogleAuthProvider.credentialFromResult(result);
@@ -103,9 +99,6 @@ export default function LoginForm() {
 
             try {
                 const url = new URL("/product", location.href);
-                // url.searchParams.delete('start_date')
-                // url.searchParams.delete('end_date')
-                console.log("url", url);
                 const signInResult = await signIn("credentials", {
                     email: email,
                     password: uuid,
@@ -145,7 +138,6 @@ export default function LoginForm() {
                     <h1 className="text-white h3 mt-2 mb-3">Account Login</h1>
                 </div>
                 <div className="input-group uf-input-group input-group-lg mb-3">
-                    {/*<span className="input-group-text fa fa-user"></span>*/}
                     <svg className="input-group-text fa fa-user" viewBox="0 0 24 24" fill="none"
                          xmlns="http://www.w3.org/2000/svg">
 
@@ -197,7 +189,7 @@ export default function LoginForm() {
                         <label className="form-check-label text-white" htmlFor="exampleCheck1">Remember
                             Me</label>
                     </div>
-                    <a href={baseUrl + "/generate-pincode"}>Forgot password?</a>
+                    <a href={Path.OTP}>Forgot password?</a>
                 </div>
                 <div className="d-grid mb-4">
                     <button type="submit" className="btn uf-btn-primary btn-lg">
@@ -215,7 +207,6 @@ export default function LoginForm() {
                 </div>
                 <div className="uf-social-login d-flex justify-content-center">
                     <a onClick={handleGoogleSignIn} className="uf-social-ic" title="Login with Google">
-                        {/*<i className="fab fa-google"></i>*/}
                         <svg className="fab fa-google" width="20px" height="20px" viewBox="0 0 20 20" version="1.1"
                              xmlns="http://www.w3.org/2000/svg" fill="#000000">
 
@@ -241,7 +232,6 @@ export default function LoginForm() {
                         </svg>
                     </a>
                     <a className="uf-social-ic" title="Login with Twitter">
-                        {/*<i className="fab fa-twitter"></i>*/}
                         <svg className="fab fa-twitter" width="20px" height="20px" viewBox="0 -2 20 20" version="1.1"
                              xmlns="http://www.w3.org/2000/svg" fill="#000000">
 
@@ -266,7 +256,6 @@ export default function LoginForm() {
                         </svg>
                     </a>
                     <a className="uf-social-ic" title="Login with Facebook">
-                        {/*<i className="fab fa-facebook-f"></i>*/}
                         <svg className="fab fa-facebook-f" width="20px" height="20px" viewBox="-5 0 20 20" version="1.1"
                              xmlns="http://www.w3.org/2000/svg"
                              fill="#883030" stroke="#883030">
@@ -293,9 +282,8 @@ export default function LoginForm() {
                     </a>
                 </div>
                 <div className="mt-4 text-center">
-                    {/* eslint-disable-next-line react/no-unescaped-entities */}
                     <span className="text-white">Don't have an account? </span>
-                    <a href={baseUrl + "/signup"}>Sign Up</a>
+                    <a href={Path.SIGNUP}>Sign Up</a>
                 </div>
             </form>
         </div>

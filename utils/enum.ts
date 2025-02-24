@@ -13,6 +13,8 @@ export enum SessionStorageKey {
 
 export enum Path {
     LOGIN= "/login",
+    SIGNUP= "/signup",
+    OTP= "/generate-pincode",
     FEATURES= "/fixtures",
     TABLE= "/tables",
     TEAM= "/teams",
