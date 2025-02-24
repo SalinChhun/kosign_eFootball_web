@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { ConfirmPinCodeRequest } from "@/lib/types/auth";
 import { Spinner } from "react-bootstrap";
 import PinCodeExpiredTime from "@/components/ui/auth/PinCodeExpiredTime";
+import Image from "next/image";
 
 const VerifyPinCode = () => {
     const router = useRouter();
@@ -74,7 +75,14 @@ const VerifyPinCode = () => {
             <div className="uf-form-signin">
                 <div className="text-center">
                     <a href="https://uifresh.net/">
-                        <img src="icon/besdong.jpg" alt="" width="100" height="100" className="img-banner" />
+                        <Image
+                            src="/icon/besdong.jpg"
+                            alt="Logo"
+                            width={100}
+                            height={100}
+                            className="img-banner mx-auto"
+                            priority
+                        />
                     </a>
                     <h1 className="text-white h3 mt-3">Verify Pin Code</h1>
                 </div>

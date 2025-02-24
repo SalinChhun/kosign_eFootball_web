@@ -3,6 +3,7 @@ import React, {useState} from "react";
 import {SignUpRequest} from "@/lib/types/auth";
 import {useRouter} from "next/navigation";
 import useAuthMutation from "@/lib/hooks/useAuthMutation";
+import Image from "next/image";
 
 const SignUpForm = () => {
 
@@ -37,7 +38,14 @@ const SignUpForm = () => {
             <div className="uf-form-signin">
                 <div className="text-center">
                     <a href="https://uifresh.net/">
-                        <img src="icon/besdong.jpg" alt="" width="100" height="100" className="img-banner"/>
+                        <Image
+                            src="/icon/besdong.jpg"
+                            alt="Logo"
+                            width={100}
+                            height={100}
+                            className="img-banner mx-auto"
+                            priority
+                        />
                     </a>
                     <h1 className="text-white h3 mt-3">Account Register</h1>
                 </div>

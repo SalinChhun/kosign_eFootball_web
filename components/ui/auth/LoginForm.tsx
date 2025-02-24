@@ -8,6 +8,7 @@ import {GoogleAuthProvider, signInWithPopup} from "firebase/auth";
 import {auth, provider} from "@/utils/firebase";
 import {Spinner} from "react-bootstrap";
 import {Path} from "@/utils/enum";
+import Image from "next/image";
 
 export default function LoginForm() {
     const baseUrl = `${process.env.NEXT_PUBLIC_BASE_URL}`;
@@ -133,7 +134,14 @@ export default function LoginForm() {
             <form className="uf-form-signin mt-4" onSubmit={handleClick}>
                 <div className="text-center">
                     <a href="https://uifresh.net/">
-                        <img src="icon/sl-nhom-tv.jpg" alt="" width="100" height="100" className="img-banner"/>
+                        <Image
+                            src="icon/sl-nhom-tv.jpg"
+                            alt="Logo"
+                            width={100}
+                            height={100}
+                            className="img-banner mx-auto"
+                            priority
+                        />
                     </a>
                     <h1 className="text-white h3 mt-2 mb-3">Account Login</h1>
                 </div>
@@ -170,7 +178,12 @@ export default function LoginForm() {
                         maxLength={150}/>
                 </div>
                 <div className="input-group uf-input-group input-group-lg mb-3">
-                    <img src="icon/pass.png" className="input-group-text fa fa-user"/>
+                    <Image
+                        src="icon/pass.png"
+                        alt="Logo"
+                        className="img-banner mx-auto"
+                        priority
+                    />
                     <input
                         className="form-control"
                         type="password"

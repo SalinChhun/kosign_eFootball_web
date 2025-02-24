@@ -3,6 +3,7 @@ import React, {useState} from "react";
 import useAuthMutation from "@/lib/hooks/useAuthMutation";
 import {useRouter} from "next/navigation";
 import {Spinner} from "react-bootstrap";
+import Image from "next/image";
 
 const GeneratePinCode = () => {
 
@@ -25,13 +26,19 @@ const GeneratePinCode = () => {
             <div className="uf-form-signin">
                 <div className="text-center">
                     <a href="https://uifresh.net/">
-                        <img src="icon/besdong.jpg" alt="" width="100" height="100" className="img-banner"/>
+                        <Image
+                            src="/icon/besdong.jpg"
+                            alt="Logo"
+                            width={100}
+                            height={100}
+                            className="img-banner mx-auto"
+                            priority
+                        />
                     </a>
                     <h1 className="text-white h3 mt-3">Forgot Password</h1>
                 </div>
                 <form className="mt-4" onSubmit={handleGeneratePinCode}>
                     <div className="input-group uf-input-group input-group-lg mb-3">
-                        {/*<span className="input-group-text fa fa-envelope"></span>*/}
                         <svg
                             style={{fill: "white"}}
                             className="input-group-text fa fa-envelope"

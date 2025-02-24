@@ -5,6 +5,7 @@ import useAuthMutation from "@/lib/hooks/useAuthMutation";
 import { useRouter } from "next/navigation";
 import { Spinner } from "react-bootstrap";
 import { ResetPasswordRequest } from "@/lib/types/auth";
+import Image from "next/image";
 
 const ResetPassword = () => {
     const router = useRouter();
@@ -39,13 +40,25 @@ const ResetPassword = () => {
             <div className="uf-form-signin">
                 <div className="text-center">
                     <a href="https://uifresh.net/">
-                        <img src="icon/besdong.jpg" alt="" width="100" height="100" className="img-banner" />
+                        <Image
+                            src="/icon/besdong.jpg"
+                            alt="Logo"
+                            width={100}
+                            height={100}
+                            className="img-banner mx-auto"
+                            priority
+                        />
                     </a>
                     <h1 className="text-white h3 mt-3">Forgot Password</h1>
                 </div>
                 <form className="mt-4" onSubmit={handleResetPassword}>
                     <div className="input-group uf-input-group input-group-lg mb-3">
-                        <img src="icon/pass.png" className="input-group-text fa fa-user" />
+                        <Image
+                            src="icon/pass.png"
+                            alt="Logo"
+                            className="input-group-text fa fa-user mx-auto"
+                            priority
+                        />
                         <input
                             className="form-control"
                             type="password"
@@ -57,7 +70,12 @@ const ResetPassword = () => {
                         />
                     </div>
                     <div className="input-group uf-input-group input-group-lg mb-3">
-                        <img src="icon/pass.png" className="input-group-text fa fa-user" />
+                        <Image
+                            src="icon/pass.png"
+                            alt="Logo"
+                            className="input-group-text fa fa-user mx-auto"
+                            priority
+                        />
                         <input
                             className="form-control"
                             type="password"
