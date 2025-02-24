@@ -1,10 +1,10 @@
 import {PropsWithChildren} from "react";
-import NavBar from "@/app/components/shared/NavBar";
-import "@/app/styles/globals.css";
-import "@/app/styles/we-football.css";
-import "@/app/styles/home-page.css";
-import {ShootingStars} from "@/app/components/shared/ShootingStars";
-import {StarsBackground} from "@/app/components/shared/StarsBackground";
+import NavBar from "@/components/shared/NavBar";
+import "@/styles/globals.css";
+import "@/styles/we-football.css";
+import "@/styles/home-page.css";
+import {ShootingStars} from "@/components/shared/ShootingStars";
+import {StarsBackground} from "@/components/shared/StarsBackground";
 
 export default function HomeLayout({children}: PropsWithChildren) {
 

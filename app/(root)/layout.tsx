@@ -1,10 +1,10 @@
 import {PropsWithChildren} from "react";
-import "@/app/styles/ps-boostrap.css";
-import "@/app/styles/globals.css";
-import "@/app/styles/we-football.css";
+import "@/styles/ps-boostrap.css";
+import "@/styles/globals.css";
+import "@/styles/we-football.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import NextAuthProvider from "@/app/components/NextAuthProvider";
-import NavBar from "@/app/components/shared/NavBar";
+import NextAuthProvider from "@/app/(auth)/NextAuthProvider";
+import NavBar from "@/components/shared/NavBar";
 
 
 const RootLayout = async ({

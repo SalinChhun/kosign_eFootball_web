@@ -1,6 +1,6 @@
-import LoginForm from "@/app/components/auth/LoginForm";
+import LoginForm from "@/components/ui/auth/LoginForm";
 import {getServerSession} from "next-auth";
-import {authOption} from "@/app/lib/session/auth";
+import {authOption} from "@/lib/session/auth";
 import {redirect} from "next/navigation";
 
 export const metadata = {

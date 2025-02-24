@@ -1,10 +1,10 @@
-import AuthLayout from "@/app/components/AuthLayout";
+import AuthLayout from "@/app/(auth)/AuthLayout";
 // import "@/app/styles/ks_bootstrap.css";
 // import "@/app/styles/we-tax.css";
-import "@/app/styles/globals.css";
-import "@/app/styles/all.min.css";
-import "@/app/styles/bootstrap.min.css";
-import "@/app/styles/uf-style.css";
+import "@/styles/globals.css";
+import "@/styles/all.min.css";
+import "@/styles/bootstrap.min.css";
+import "@/styles/uf-style.css";
 // import "bootstrap/dist/css/bootstrap.min.css";
 
 export const metadata = {

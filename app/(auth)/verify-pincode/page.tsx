@@ -1,4 +1,4 @@
-import VerifyPinCode from "@/app/components/auth/VerifyPinCode";
+import VerifyPinCode from "@/components/ui/auth/VerifyPinCode";
 
 
 function ConfirmPinCode() {

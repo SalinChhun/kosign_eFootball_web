@@ -1,4 +1,4 @@
-import GeneratePinCode from "@/app/components/auth/GeneratePinCode";
+import GeneratePinCode from "@/components/ui/auth/GeneratePinCode";
 
 
 function RequestPinCode() {

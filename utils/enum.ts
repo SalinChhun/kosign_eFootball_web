@@ -10,3 +10,10 @@ export enum SessionStorageKey {
     DIGITAL_SIGNATURE = 'digitalSignature-options',
     DECLARATIONS = 'declaration-options',
 }
+
+export enum Path {
+    LOGIN= "/login",
+    FEATURES= "/fixtures",
+    TABLE= "/tables",
+    TEAM= "/teams",
+}
