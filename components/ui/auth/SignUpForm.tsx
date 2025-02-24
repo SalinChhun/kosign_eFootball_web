@@ -1,5 +1,5 @@
 "use client"
-import React, {useCallback, useReducer, useState} from "react";
+import React, {useState} from "react";
 import {SignUpRequest} from "@/lib/types/auth";
 import {useRouter} from "next/navigation";
 import useAuthMutation from "@/lib/hooks/useAuthMutation";

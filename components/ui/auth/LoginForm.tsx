@@ -1,11 +1,9 @@
 "use client";
-import {useFormContextState} from "@/lib/hooks/useFormState";
-import React, {useEffect, useReducer, useState} from "react";
+import React, {useReducer} from "react";
 import {useLoginStore} from "@/lib/store/store";
 import toast from "react-hot-toast";
 import {signIn} from "next-auth/react";
 import {useRouter, useSearchParams} from "next/navigation";
-import {useForm} from "react-hook-form";
 import {GoogleAuthProvider, signInWithPopup} from "@firebase/auth";
 import {auth, provider} from "@/utils/firebase";
 import {Spinner} from "react-bootstrap";
