@@ -295,7 +295,7 @@ export default function LoginForm() {
                     </a>
                 </div>
                 <div className="mt-4 text-center">
-                    <span className="text-white">Don't have an account? </span>
+                    <span className="text-white">Don&apos;t have an account? </span>
                     <a href={Path.SIGNUP}>Sign Up</a>
                 </div>
             </form>

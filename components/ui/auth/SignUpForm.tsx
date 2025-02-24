@@ -112,8 +112,14 @@ const SignUpForm = () => {
                         />
                     </div>
                     <div className="input-group uf-input-group input-group-lg mb-3">
-                        {/*<span className="input-group-text fa fa-lock"></span>*/}
-                        <img src="icon/pass.png" className="input-group-text fa fa-lock"/>
+                        <Image
+                            src="icon/pass.png"
+                            alt="Logo"
+                            width={100}
+                            height={100}
+                            className="input-group-text fa fa-lock mx-auto"
+                            priority
+                        />
                         <input
                             required
                             onChange={(e) => setPassword(e.target.value)}
