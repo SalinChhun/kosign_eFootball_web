@@ -4,7 +4,7 @@ import {useLoginStore} from "@/lib/store/store";
 import toast from "react-hot-toast";
 import {signIn} from "next-auth/react";
 import {useRouter, useSearchParams} from "next/navigation";
-import {GoogleAuthProvider, signInWithPopup} from "@firebase/auth";
+import {GoogleAuthProvider, signInWithPopup} from "firebase/auth";
 import {auth, provider} from "@/utils/firebase";
 import {Spinner} from "react-bootstrap";
 
