@@ -7,6 +7,7 @@ import Image from "next/image";
 
 const GeneratePinCode = () => {
 
+    const baseUrl = `${process.env.NEXT_PUBLIC_BASE_PATH}`;
     const router = useRouter();
     const generatePinCodeMutation = useAuthMutation.useGeneratePinCode();
     const [email, setEmail] = useState("")
@@ -23,11 +24,11 @@ const GeneratePinCode = () => {
 
     return (
         <div className="container">
-            <div className="uf-form-signin">
+            <div className="uf-form-signin mt-4">
                 <div className="text-center">
                     <a href="https://uifresh.net/">
                         <Image
-                            src="/icon/besdong.jpg"
+                            src={`${baseUrl}/asset/icon/home-icon.svg`}
                             alt="Logo"
                             width={100}
                             height={100}
@@ -46,8 +47,8 @@ const GeneratePinCode = () => {
                             id="_x32_" xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 512 512"
                             fill="#000000">
-                            <g id="SVGRepo_bgCarrier" stroke-width="0"/>
-                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+                            <g id="SVGRepo_bgCarrier" strokeWidth="0"/>
+                            <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"/>
                             <g id="SVGRepo_iconCarrier">
                                 <style type="text/css"></style>
                                 <g>

@@ -9,6 +9,11 @@ export default function Table() {
             position: 1,
             team: "Liverpool",
             played: 27,
+            won: 21,
+            drawn: 1,
+            lost: 5,
+            gf: 102,
+            ga: 64,
             gd: 38,
             points: 64,
             logo: "/lovable-uploads/e1915e74-7933-4bec-90bc-b3984edf4950.png"
@@ -17,6 +22,11 @@ export default function Table() {
             position: 2,
             team: "Arsenal",
             played: 26,
+            won: 21,
+            drawn: 1,
+            lost: 5,
+            gf: 102,
+            ga: 64,
             gd: 28,
             points: 53,
             logo: "/lovable-uploads/e1915e74-7933-4bec-90bc-b3984edf4950.png"
@@ -25,6 +35,11 @@ export default function Table() {
             position: 3,
             team: "Nott'm Forest",
             played: 26,
+            won: 21,
+            drawn: 1,
+            lost: 5,
+            gf: 102,
+            ga: 64,
             gd: 11,
             points: 47,
             logo: "/lovable-uploads/e1915e74-7933-4bec-90bc-b3984edf4950.png"
@@ -33,6 +48,11 @@ export default function Table() {
             position: 4,
             team: "Man City",
             played: 26,
+            won: 21,
+            drawn: 1,
+            lost: 5,
+            gf: 102,
+            ga: 64,
             gd: 15,
             points: 44,
             logo: "/lovable-uploads/e1915e74-7933-4bec-90bc-b3984edf4950.png"
@@ -41,6 +61,11 @@ export default function Table() {
             position: 5,
             team: "Newcastle",
             played: 26,
+            won: 21,
+            drawn: 1,
+            lost: 5,
+            gf: 102,
+            ga: 64,
             gd: 10,
             points: 44,
             logo: "/lovable-uploads/e1915e74-7933-4bec-90bc-b3984edf4950.png"
@@ -49,6 +74,11 @@ export default function Table() {
             position: 6,
             team: "Bournemouth",
             played: 26,
+            won: 21,
+            drawn: 1,
+            lost: 5,
+            gf: 102,
+            ga: 64,
             gd: 14,
             points: 43,
             logo: "/lovable-uploads/e1915e74-7933-4bec-90bc-b3984edf4950.png"
@@ -57,6 +87,11 @@ export default function Table() {
             position: 7,
             team: "Chelsea",
             played: 26,
+            won: 21,
+            drawn: 1,
+            lost: 5,
+            gf: 102,
+            ga: 64,
             gd: 12,
             points: 43,
             logo: "/lovable-uploads/e1915e74-7933-4bec-90bc-b3984edf4950.png"
@@ -65,6 +100,11 @@ export default function Table() {
             position: 8,
             team: "Aston Villa",
             played: 27,
+            won: 21,
+            drawn: 1,
+            lost: 5,
+            gf: 102,
+            ga: 64,
             gd: -2,
             points: 42,
             logo: "/lovable-uploads/e1915e74-7933-4bec-90bc-b3984edf4950.png"
@@ -73,6 +113,11 @@ export default function Table() {
             position: 9,
             team: "Brighton",
             played: 26,
+            won: 21,
+            drawn: 1,
+            lost: 5,
+            gf: 102,
+            ga: 64,
             gd: 4,
             points: 40,
             logo: "/lovable-uploads/e1915e74-7933-4bec-90bc-b3984edf4950.png"
@@ -81,6 +126,11 @@ export default function Table() {
             position: 10,
             team: "Fulham",
             played: 26,
+            won: 21,
+            drawn: 1,
+            lost: 5,
+            gf: 102,
+            ga: 64,
             gd: 3,
             points: 39,
             logo: "/lovable-uploads/e1915e74-7933-4bec-90bc-b3984edf4950.png"
@@ -89,6 +139,11 @@ export default function Table() {
             position: 11,
             team: "Brentford",
             played: 26,
+            won: 21,
+            drawn: 1,
+            lost: 5,
+            gf: 102,
+            ga: 64,
             gd: 5,
             points: 37,
             logo: "/lovable-uploads/e1915e74-7933-4bec-90bc-b3984edf4950.png"
@@ -97,6 +152,11 @@ export default function Table() {
             position: 12,
             team: "Spurs",
             played: 26,
+            won: 21,
+            drawn: 1,
+            lost: 5,
+            gf: 102,
+            ga: 64,
             gd: 15,
             points: 33,
             logo: "/lovable-uploads/e1915e74-7933-4bec-90bc-b3984edf4950.png"
@@ -105,6 +165,11 @@ export default function Table() {
             position: 13,
             team: "Crystal Palace",
             played: 26,
+            won: 21,
+            drawn: 1,
+            lost: 5,
+            gf: 102,
+            ga: 64,
             gd: -1,
             points: 33,
             logo: "/lovable-uploads/e1915e74-7933-4bec-90bc-b3984edf4950.png"
@@ -113,6 +178,11 @@ export default function Table() {
             position: 14,
             team: "Everton",
             played: 26,
+            won: 21,
+            drawn: 1,
+            lost: 5,
+            gf: 102,
+            ga: 64,
             gd: -4,
             points: 31,
             logo: "/lovable-uploads/e1915e74-7933-4bec-90bc-b3984edf4950.png"
@@ -121,6 +191,11 @@ export default function Table() {
             position: 15,
             team: "Man Utd",
             played: 26,
+            won: 21,
+            drawn: 1,
+            lost: 5,
+            gf: 102,
+            ga: 64,
             gd: -7,
             points: 30,
             logo: "/lovable-uploads/e1915e74-7933-4bec-90bc-b3984edf4950.png"
@@ -180,7 +255,7 @@ export default function Table() {
                     </div>
                 </div>
 
-                <div className="max-w-4xl mx-auto">
+                <div className="max-w-8xl mx-auto">
                     <Standings teams={mockStandings}/>
                 </div>
             </div>

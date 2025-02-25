@@ -67,11 +67,11 @@ html, body {
 
 /* Active Link Styling */
 a.cur_act {
-    color: #ff6b00 !important;
+    color: #cdbc6d !important;
 }
 
 a.cur_act .svg-icon {
-    fill: #ff6b00 !important;
+    fill: #cdbc6d !important;
 }
 
 .svg-icon {

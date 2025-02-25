@@ -3,6 +3,11 @@ interface TeamStanding {
   position: number;
   team: string;
   played: number;
+  won: number;
+  drawn: number;
+  lost: number;
+  gf: number;
+  ga: number;
   gd: number;
   points: number;
   logo: string;
@@ -21,13 +26,18 @@ export const Standings = ({ teams }: StandingsProps) => {
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead>
-            <tr className="text-xs uppercase border-b border-gray-100">
-              <th className="px-4 py-3 text-left font-semibold">Pos</th>
-              <th className="px-4 py-3 text-left font-semibold">Club</th>
-              <th className="px-4 py-3 text-center font-semibold">PI</th>
-              <th className="px-4 py-3 text-center font-semibold">GD</th>
-              <th className="px-4 py-3 text-center font-semibold">Pts</th>
-            </tr>
+          <tr className="text-xs uppercase border-b border-gray-100">
+            <th className="px-4 py-3 text-left font-semibold">Pos</th>
+            <th className="px-4 py-3 text-left font-semibold">Club</th>
+            <th className="px-4 py-3 text-center font-semibold">Played</th>
+            <th className="px-4 py-3 text-center font-semibold">Won</th>
+            <th className="px-4 py-3 text-center font-semibold">Drawn</th>
+            <th className="px-4 py-3 text-center font-semibold">Lost</th>
+            <th className="px-4 py-3 text-center font-semibold">GF</th>
+            <th className="px-4 py-3 text-center font-semibold">GA</th>
+            <th className="px-4 py-3 text-center font-semibold">GD</th>
+            <th className="px-4 py-3 text-center font-semibold">Pts</th>
+          </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">
             {teams.map((team) => (
@@ -47,6 +57,11 @@ export const Standings = ({ teams }: StandingsProps) => {
                   </div>
                 </td>
                 <td className="px-4 py-3 text-center text-sm">{team.played}</td>
+                <td className="px-4 py-3 text-center text-sm">{team.won}</td>
+                <td className="px-4 py-3 text-center text-sm">{team.drawn}</td>
+                <td className="px-4 py-3 text-center text-sm">{team.lost}</td>
+                <td className="px-4 py-3 text-center text-sm">{team.gf}</td>
+                <td className="px-4 py-3 text-center text-sm">{team.ga}</td>
                 <td className="px-4 py-3 text-center text-sm">
                   {team.gd > 0 ? `+${team.gd}` : team.gd}
                 </td>

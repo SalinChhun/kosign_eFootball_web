@@ -39,20 +39,17 @@ export default function Clubs() {
     return (
         <div className="min-h-screen bg-gray-50">
             {/* Hero Section with Search */}
-            <div className="bg-gradient-to-r from-[#121b30] via-[#121b40] to-[#121b30] py-10">
-                <div className="container mx-auto px-4">
+            <div className="bg-gradient-to-r from-[#121b30] via-[#121b40] to-[#121b30]">
+                <div className="container mx-auto px-4 py-12">
                     <h1 className="text-5xl font-bold text-white mb-8">Clubs</h1>
-                    <div className="max-w-2xl relative">
-                        <div className="relative">
-                            <input
-                                type="text"
-                                placeholder="Search Clubs"
-                                value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)}
-                                className="w-full px-4 py-3 pl-12 rounded-lg text-lg focus:outline-none focus:ring-2 focus:ring-purple-300"
-                            />
-                            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
-                        </div>
+                    <div className="flex gap-2">
+                        <input
+                            type="text"
+                            placeholder="Search Clubs"
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            className="bg-white text-purple-900 px-6 py-1 font-medium rounded-lg text-lg focus:outline-none focus:ring-2 focus:ring-purple-300"
+                        />
                     </div>
                 </div>
             </div>
@@ -81,7 +78,7 @@ export default function Clubs() {
                                 setSelectedSeason("2024/25");
                             }}
                         >
-                            <RotateCcw className="h-4 w-4" />
+                            <RotateCcw className="h-4 w-4"/>
                             <span>Reset filters</span>
                         </button>
                     </div>
