@@ -15,7 +15,7 @@ export enum Path {
     LOGIN= "/login",
     SIGNUP= "/signup",
     OTP= "/generate-pincode",
-    FEATURES= "/fixtures",
+    RESULT= "/results",
     TABLE= "/tables",
-    TEAM= "/teams",
+    CLUB= "/clubs",
 }

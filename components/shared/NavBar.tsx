@@ -37,7 +37,7 @@ const NavBar = () => {
                     </Link>
                 </li>
                 <li className="navbar-item">
-                    <Link href={Path.FEATURES} className={pathname === Path.FEATURES ? 'cur_act' : ''}>Fixtures</Link>
+                    <Link href={Path.RESULT} className={pathname === Path.RESULT ? 'cur_act' : ''}>Results</Link>
                 </li>
                 <li className="navbar-item">
                     <Link href={Path.TABLE} className={pathname === Path.TABLE ? 'cur_act' : ''}>
@@ -58,7 +58,7 @@ const NavBar = () => {
                     </Link>
                 </li>
                 <li className="navbar-item">
-                    <Link href={Path.TEAM} className={pathname === Path.TEAM ? 'cur_act' : ''}>
+                    <Link href={Path.CLUB} className={pathname === Path.CLUB ? 'cur_act' : ''}>
                         <svg className="icon flat-color ks_img svg-icon" width="800px" height="800px"
                              viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg"
                              aria-hidden="true" role="img"
@@ -110,7 +110,7 @@ const NavBar = () => {
 
                             </g>
                         </svg>
-                        Teams
+                        Clubs
                     </Link>
                 </li>
             </ul>
@@ -136,9 +136,9 @@ const NavBar = () => {
                         <button className="close-btn" onClick={closeMenu}>X</button>
                         {/* Close Button */}
                         <li><Link href="/" onClick={closeMenu}>Home</Link></li>
-                        <li><Link href={Path.FEATURES} onClick={closeMenu}>Fixtures</Link></li>
+                        <li><Link href={Path.RESULT} onClick={closeMenu}>Results</Link></li>
                         <li><Link href={Path.TABLE} onClick={closeMenu}>Tables</Link></li>
-                        <li><Link href={Path.TEAM} onClick={closeMenu}>Teams</Link></li>
+                        <li><Link href={Path.CLUB} onClick={closeMenu}>Clubs</Link></li>
                     </ul>
                 </div>
             )}

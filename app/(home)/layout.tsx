@@ -12,11 +12,10 @@ export default function HomeLayout({children}: PropsWithChildren) {
         <html lang="en">
         <body className="body" style={{overflowX: "hidden"}}>
         <NavBar/>
-        {/*<div className="h-full bg-neutral-900 relative w-full">*/}
-        <div className="h-full bg-neutral-900 relative w-full">
+        <div className="h-full bg-neutral-900 relative w-full pt-[60px]">
             {children}
-            <ShootingStars/>
-            <StarsBackground/>
+            {/*<ShootingStars/>*/}
+            {/*<StarsBackground/>*/}
         </div>
         </body>
         </html>
