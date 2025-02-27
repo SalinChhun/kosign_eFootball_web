@@ -28,8 +28,8 @@
     "next-http-proxy-middleware": "^1.2.6",
     "rc-pagination": "^3.6.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "react-bootstrap": "^2.8.0",
+    "react-dom": "^18.2.0",
     "react-hook-form": "^7.51.1",
     "react-hot-toast": "^2.4.1",
     "react-onesignal": "^3.0.1",
@@ -40,22 +40,24 @@
     "sockjs-client": "^1.6.1",
     "stompjs": "^2.3.3",
     "tailwind-merge": "^2.5.5",
+    "uuidv4": "^6.2.13",
     "websocket": "^1.0.34",
     "zustand": "^4.5.2"
   },
   "devDependencies": {
+    "@types/bootstrap": "^5.2.6",
     "@types/crypto-js": "^4.2.2",
     "@types/node": "^20",
     "@types/react": "18.3.17",
     "@types/react-dom": "^18",
     "@types/sockjs-client": "^1.5.4",
     "@types/stompjs": "^2.3.9",
+    "@types/uuid": "^10.0.0",
     "autoprefixer": "^10.4.20",
-    "postcss": "^8.4.49",
-    "tailwindcss": "^3.4.17",
-    "@types/bootstrap": "^5.2.6",
     "eslint": "8.44.0",
     "eslint-config-next": "^13.5.6",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17",
     "typescript": "5.0.4"
   }
 }
