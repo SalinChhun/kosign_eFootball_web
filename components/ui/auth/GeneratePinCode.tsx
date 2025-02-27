@@ -10,8 +10,8 @@ const GeneratePinCode = () => {
     const baseUrl = `${process.env.NEXT_PUBLIC_BASE_PATH}`;
     const router = useRouter();
     const generatePinCodeMutation = useAuthMutation.useGeneratePinCode();
+    console.log("Pin code ->>>", generatePinCodeMutation.data?.data?.data?.pin_code);
     const [email, setEmail] = useState("")
-    console.log("generatePinCodeMutation.data", generatePinCodeMutation)
     const handleGeneratePinCode = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         generatePinCodeMutation.mutation(email);

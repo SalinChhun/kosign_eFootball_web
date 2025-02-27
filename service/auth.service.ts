@@ -9,7 +9,7 @@ const ServiceId = {
     SIGNUP: '/api/v1/auth/register',
     GENERATE_PIN_CODE: '/api/v1/auth/generatePinCode',
     VERIFY_PIN_CODE: '/api/v1/auth/confirmPinCode',
-    RESET_PASSWORD: '/api/v1/users/resetPassword'
+    RESET_PASSWORD: '/api/v1/auth/resetPassword'
 }
 
 const signup = (data: SignUpRequest) => {

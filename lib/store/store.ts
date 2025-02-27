@@ -27,3 +27,12 @@ export const useProductStore = create<{
     setIsUpdate: (isUpdate: boolean) => set((state): any => ({...state, isUpdate})),
     setUpdateData: (updateData: any) => set((state): any => ({...state, updateData})),
 }))
+
+export const useGeneratePinCodeStore = create<{
+    isLoading: boolean,
+    setIsLoading: (isUpdate: boolean) => void
+}>(set => ({
+    isLoading: false,
+    password: '',
+    setIsLoading: (isLoading: boolean) => set((state): any => ({...state, isLoading})),
+}));

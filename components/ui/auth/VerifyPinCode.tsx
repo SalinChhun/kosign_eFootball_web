@@ -119,7 +119,7 @@ const VerifyPinCode = () => {
 
     return (
         <div className="container">
-            <div className="uf-form-signin">
+            <div className="uf-form-signin mt-4">
                 <div className="text-center">
                     <a href="https://uifresh.net/">
                         <Image

@@ -3,7 +3,7 @@ import React, {useReducer} from "react";
 import {useLoginStore} from "@/lib/store/store";
 import toast from "react-hot-toast";
 import {signIn} from "next-auth/react";
-import {useRouter, useSearchParams} from "next/navigation";
+import {useRouter} from "next/navigation";
 import {GoogleAuthProvider, signInWithPopup} from "firebase/auth";
 import {auth, provider} from "@/utils/firebase";
 import {Spinner} from "react-bootstrap";
@@ -15,7 +15,6 @@ export default function LoginForm() {
     const {email, password, setEmail, setPassword} = useLoginStore();
 
     const router = useRouter()
-    const searchParams = useSearchParams()
 
     const [loginRequest, dispatch] = useReducer((state: any, action: any) => {
         return {...state, ...action}
@@ -32,10 +31,12 @@ export default function LoginForm() {
         if (result?.error == "User not found") {
             dispatch({loginError: result?.error!})
             dispatch({userIdError: true, passwordError: false})
+            toast.error(result?.error!);
             return;
         } else if (result?.error == "Password is incorrect") {
             dispatch({loginError: result.error!})
             dispatch({userIdError: false, passwordError: true})
+            toast.error(result?.error!);
             return;
         } else {
             dispatch({loginError: result?.error!})
@@ -62,7 +63,7 @@ export default function LoginForm() {
                 credentialType: 'login'
             })
 
-            console.log("result", result?.url!)
+            console.log("result", result)
 
             checkError(result);
             if (result?.ok) {
@@ -70,7 +71,6 @@ export default function LoginForm() {
                 return;
             }
 
-            toast.error('Login failed')
         } catch (e) {
             console.log('error', e)
 
@@ -108,7 +108,7 @@ export default function LoginForm() {
                     credentialType: "thirdPartyLogin",
                 });
 
-                console.log("signInResult", signInResult?.url!);
+                console.log("signInResult", signInResult);
 
                 checkError(signInResult);
                 if (signInResult?.ok) {
@@ -116,7 +116,7 @@ export default function LoginForm() {
                     return;
                 }
 
-                toast.error("Login failed");
+
             } catch (signInError) {
                 console.log("signInError", signInError);
             }
