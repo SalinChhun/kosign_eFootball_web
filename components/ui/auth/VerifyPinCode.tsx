@@ -11,6 +11,7 @@ import Image from "next/image";
 const VerifyPinCode = () => {
     const router = useRouter();
     const verifyPinCodeMutation = useAuthMutation.useVerifyPinCode();
+    const baseUrl = `${process.env.NEXT_PUBLIC_BASE_PATH}`;
 
     const [email, setEmail] = useState("");
     const [pinCode, setPinCode] = useState("");
@@ -25,29 +26,73 @@ const VerifyPinCode = () => {
 
         const handleKeydown = (event: KeyboardEvent) => {
             const target = event.target as HTMLInputElement;
-            const maxLength = parseInt(target.getAttribute("maxlength") || "0");
 
-            if (event.key === "Backspace") {
+            // Allow only number keys (0-9) and control keys
+            if (!(
+                (event.key >= '0' && event.key <= '9') ||
+                event.key === 'Backspace' ||
+                event.key === 'Delete' ||
+                event.key === 'Tab' ||
+                event.key === 'ArrowLeft' ||
+                event.key === 'ArrowRight'
+            )) {
+                event.preventDefault();
+                return;
+            }
+
+            if (event.key === 'Backspace') {
                 target.value = "";
                 if (target.previousElementSibling) {
                     (target.previousElementSibling as HTMLInputElement).focus();
                 }
-            } else if (event.keyCode >= 48 && event.keyCode <= 57) {
-                if (target.value.length < maxLength) {
-                    target.value = event.key;
-                    if (target.nextElementSibling) {
-                        (target.nextElementSibling as HTMLInputElement).focus();
-                    }
+                event.preventDefault();
+            } else if (event.key >= '0' && event.key <= '9') {
+                target.value = event.key;
+                if (target.nextElementSibling) {
+                    (target.nextElementSibling as HTMLInputElement).focus();
                 }
+                event.preventDefault();
             }
-            event.preventDefault();
+
             updatePinCode(inputs);
         };
 
-        inputs.forEach(input => input.addEventListener("keydown", handleKeydown));
+        // Handle paste event for convenience
+        const handlePaste = (event: ClipboardEvent) => {
+            event.preventDefault();
+            const pastedData = event.clipboardData?.getData('text');
+
+            if (!pastedData) return;
+
+            // Extract only numbers from pasted data
+            const numbers = pastedData.replace(/\D/g, '').slice(0, inputs.length);
+
+            // Fill inputs with pasted numbers
+            inputs.forEach((input, index) => {
+                input.value = numbers[index] || '';
+            });
+
+            // Focus the next empty input or the last one
+            const emptyInput = Array.from(inputs).find(input => input.value === '');
+            if (emptyInput) {
+                emptyInput.focus();
+            } else if (inputs.length > 0) {
+                inputs[inputs.length - 1].focus();
+            }
+
+            updatePinCode(inputs);
+        };
+
+        inputs.forEach(input => {
+            input.addEventListener("keydown", handleKeydown);
+            input.addEventListener("paste", handlePaste);
+        });
 
         return () => {
-            inputs.forEach(input => input.removeEventListener("keydown", handleKeydown));
+            inputs.forEach(input => {
+                input.removeEventListener("keydown", handleKeydown);
+                input.removeEventListener("paste", handlePaste);
+            });
         };
     }, []);
 
@@ -66,9 +111,11 @@ const VerifyPinCode = () => {
         verifyPinCodeMutation.mutation(req);
     };
 
-    if (verifyPinCodeMutation.isSuccess) {
-        router.push(`/reset-password?email=${encodeURIComponent(email)}`);
-    }
+    useEffect(() => {
+        if (verifyPinCodeMutation.isSuccess) {
+            router.push(`/reset-password?email=${encodeURIComponent(email)}`);
+        }
+    }, [verifyPinCodeMutation.isSuccess, email, router]);
 
     return (
         <div className="container">
@@ -76,7 +123,7 @@ const VerifyPinCode = () => {
                 <div className="text-center">
                     <a href="https://uifresh.net/">
                         <Image
-                            src="/icon/besdong.jpg"
+                            src={`${baseUrl}/asset/icon/home-icon.svg`}
                             alt="Logo"
                             width={100}
                             height={100}
@@ -92,10 +139,14 @@ const VerifyPinCode = () => {
                             {Array.from({ length: 6 }).map((_, index) => (
                                 <input
                                     key={index}
+                                    id={`otp-input-${index}`}
                                     className="m-2 text-center form-control rounded"
                                     type="text"
+                                    inputMode="numeric"
+                                    pattern="[0-9]*"
                                     maxLength={1}
                                     required
+                                    autoComplete="off"
                                 />
                             ))}
                         </div>

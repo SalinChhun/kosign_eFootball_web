@@ -51,7 +51,7 @@ export default function LoginForm() {
         const toastId = toast.loading('Logging...')
         try {
 
-            const url = new URL('/product', location.href)
+            const url = new URL('/', location.href)
 
             console.log("url", url)
             const result = await signIn("credentials", {
@@ -99,7 +99,7 @@ export default function LoginForm() {
             const providerId = result?.providerId;
 
             try {
-                const url = new URL("/product", location.href);
+                const url = new URL("/", location.href);
                 const signInResult = await signIn("credentials", {
                     email: email,
                     password: uuid,

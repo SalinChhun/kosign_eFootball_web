@@ -199,5 +199,9 @@ a.cur_act .svg-icon {
         display: none; /* Hide ☰ icon on larger screens */
     }
 }
-
-
+.text_align_right {
+    text-align: right !important;
+}
+.cursor-pointer {
+    cursor: pointer;
+}

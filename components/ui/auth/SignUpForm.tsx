@@ -1,14 +1,12 @@
 "use client"
 import React, {useState} from "react";
 import {SignUpRequest} from "@/lib/types/auth";
-import {useRouter} from "next/navigation";
 import useAuthMutation from "@/lib/hooks/useAuthMutation";
 import Image from "next/image";
 import {Path} from "@/utils/enum";
 
 const SignUpForm = () => {
 
-    const router = useRouter();
     const baseUrl = `${process.env.NEXT_PUBLIC_BASE_PATH}`;
     const signupMutation = useAuthMutation.useSignup();
     const [firstName, setFirstName] = useState("");
@@ -27,10 +25,6 @@ const SignUpForm = () => {
         };
 
         signupMutation.mutation(request);
-    }
-
-    if (signupMutation.isSuccess) {
-        router.push('/login')
     }
 
 

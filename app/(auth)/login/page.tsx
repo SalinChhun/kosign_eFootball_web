@@ -14,7 +14,7 @@ const Login = async () => {
     console.log("session", session)
 
     if (session){
-        redirect("/product")
+        redirect("/")
     }
 
     return <LoginForm />;

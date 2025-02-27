@@ -19,11 +19,7 @@ interface StandingsProps {
 
 export const Standings = ({ teams }: StandingsProps) => {
   return (
-    <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-      <div className="bg-gradient-to-r from-[#121b30] via-[#121b40] to-[#121b30] p-4">
-        <h2 className="text-xl font-bold text-white">Premier League</h2>
-      </div>
-      <div className="overflow-x-auto">
+      <>
         <table className="w-full">
           <thead>
           <tr className="text-xs uppercase border-b border-gray-100">
@@ -40,7 +36,7 @@ export const Standings = ({ teams }: StandingsProps) => {
           </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">
-            {teams.map((team) => (
+          {teams.map((team) => (
               <tr key={team.team} className="hover:bg-gray-50 transition-colors">
                 <td className="px-4 py-3 text-sm flex items-center gap-1">
                   {team.position}
@@ -48,10 +44,10 @@ export const Standings = ({ teams }: StandingsProps) => {
                 </td>
                 <td className="px-4 py-3">
                   <div className="flex items-center gap-2">
-                    <img 
-                      src={team.logo} 
-                      alt={`${team.team} logo`} 
-                      className="w-6 h-6 object-contain"
+                    <img
+                        src={team.logo}
+                        alt={`${team.team} logo`}
+                        className="w-6 h-6 object-contain"
                     />
                     <span className="font-medium">{team.team}</span>
                   </div>
@@ -67,10 +63,9 @@ export const Standings = ({ teams }: StandingsProps) => {
                 </td>
                 <td className="px-4 py-3 text-center font-semibold">{team.points}</td>
               </tr>
-            ))}
+          ))}
           </tbody>
         </table>
-      </div>
-    </div>
+      </>
   );
 };

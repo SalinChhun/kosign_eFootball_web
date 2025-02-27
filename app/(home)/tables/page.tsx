@@ -1,8 +1,9 @@
 "use client"
 import {Standings} from "@/components/Standings";
+import CustomTable from "@/components/shared/CustomTable";
+import {ColumnDef} from "@tanstack/react-table";
 
 export default function Table() {
-
 
     const mockStandings = [
         {
@@ -44,7 +45,7 @@ export default function Table() {
             points: 47,
             logo: "/lovable-uploads/e1915e74-7933-4bec-90bc-b3984edf4950.png"
         },
-        {
+        /*{
             position: 4,
             team: "Man City",
             played: 26,
@@ -199,7 +200,147 @@ export default function Table() {
             gd: -7,
             points: 30,
             logo: "/lovable-uploads/e1915e74-7933-4bec-90bc-b3984edf4950.png"
-        }
+        }*/
+    ];
+
+    const defaultTableColumns: ColumnDef<any>[] = [
+
+        {
+            meta: {
+                headerClass: "px-4 py-3 text-left font-semibold",
+            },
+            accessorKey: "pos",
+            id: "pos",
+            header: "pos",
+            enableSorting: true,
+            cell: ({ row }) => (
+                <td className="px-4 py-3 text-sm flex items-center gap-1">
+                    {row.original?.position}
+                    <span className="text-gray-400">•</span>
+                </td>
+            ),
+        },
+        {
+            meta: {
+                headerClass: "px-4 py-3 text-left font-semibold",
+            },
+            accessorKey: "club",
+            id: "club",
+            header: "club",
+            enableSorting: true,
+            cell: ({ row }) => (
+                <td className="px-4 py-3">
+                    <div className="flex items-center gap-2">
+                        <img
+                            src={''}
+                            alt={`${row.original.team} logo`}
+                            className="w-6 h-6 object-contain"
+                        />
+                        <span className="font-medium">{row.original.team}</span>
+                    </div>
+                </td>
+            ),
+        },
+        {
+            meta: {
+                headerClass: "px-4 py-3 text-center font-semibold",
+            },
+            accessorKey: "played",
+            id: "played",
+            header: "played",
+            enableSorting: true,
+            cell: ({row}) =>
+                <td className="px-4 py-3 text-center text-sm">
+                    {row.original.played}
+                </td>
+        },
+        {
+            meta: {
+                headerClass: "px-4 py-3 text-center font-semibold",
+            },
+            accessorKey: "won",
+            id: "won",
+            header: "won",
+            enableSorting: true,
+            cell: ({ row }) => <>
+                <td className="px-4 py-3 text-center text-sm">{row.original.won}</td>
+            </>
+        },
+        {
+            meta: {
+                headerClass: "px-4 py-3 text-center font-semibold",
+            },
+            accessorKey: "drawn",
+            id: "drawn",
+            header: "drawn",
+            enableSorting: true,
+            cell: ({ row }) => <>
+                <td className="px-4 py-3 text-center text-sm">{row.original.drawn}</td>
+            </>
+        },
+        {
+            meta: {
+                headerClass: "px-4 py-3 text-center font-semibold",
+            },
+            accessorKey: "lost",
+            id: "lost",
+            header: "lost",
+            enableSorting: true,
+            cell: ({ row }) => <>
+                <td className="px-4 py-3 text-center text-sm">{row.original.lost}</td>
+            </>
+        },
+        {
+            meta: {
+                headerClass: "px-4 py-3 text-center font-semibold",
+            },
+            accessorKey: "gf",
+            id: "gf",
+            header: "gf",
+            enableSorting: true,
+            cell: ({ row }) => <>
+                <td className="px-4 py-3 text-center text-sm">{row.original.gf}</td>
+            </>
+        },
+        {
+            meta: {
+                headerClass: "px-4 py-3 text-center font-semibold",
+            },
+            accessorKey: "ga",
+            id: "ga",
+            header: "ga",
+            enableSorting: false,
+            cell: ({ row }) => <>
+                <td className="px-4 py-3 text-center text-sm">{row.original.ga}</td>
+            </>
+        },
+        {
+            meta: {
+                headerClass: "px-4 py-3 text-center font-semibold",
+            },
+            accessorKey: "gd",
+            id: "gd",
+            header: "gd",
+            enableSorting: true,
+            cell: ({ row }) => <>
+                <td className="px-4 py-3 text-center text-sm">
+                    {row.original.gd > 0 ? `+${row.original.gd}` : row.original.gd}
+                </td>
+            </>
+        },
+        {
+            meta: {
+                headerClass: "px-4 py-3 text-center font-semibold",
+            },
+            accessorKey: "points",
+            id: "points",
+            header: "points",
+            enableSorting: true,
+            cell: ({ row }) => <>
+                <td className="px-4 py-3 text-center text-sm">{row.original.points}</td>
+            </>
+        },
+
     ];
 
     return (
@@ -255,8 +396,21 @@ export default function Table() {
                     </div>
                 </div>
 
+
                 <div className="max-w-8xl mx-auto">
-                    <Standings teams={mockStandings}/>
+                    <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                        <div className="bg-gradient-to-r from-[#121b30] via-[#121b40] to-[#121b30] p-4">
+                            <h2 className="text-xl font-bold text-white">Premier League</h2>
+                        </div>
+                        <div className="overflow-x-auto">
+                            <CustomTable
+                                data={mockStandings || []}
+                                defaultColumns={defaultTableColumns}
+                                total_page={mockStandings.length}
+                            />
+                            <Standings teams={mockStandings}/>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

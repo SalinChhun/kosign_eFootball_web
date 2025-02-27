@@ -3,9 +3,12 @@ import React, {useState} from 'react';
 import Link from 'next/link';
 import {usePathname} from 'next/navigation';
 import {Path} from "@/utils/enum";
+import Image from "next/image";
+import {signOut} from "next-auth/react";
 
 const NavBar = () => {
 
+    const baseUrl = `${process.env.NEXT_PUBLIC_BASE_PATH}`;
     const pathname = usePathname();
 
     const [isMenuOpen, setIsMenuOpen] = useState(false); // State to manage mobile menu visibility
@@ -16,11 +19,25 @@ const NavBar = () => {
     // Function to close the menu
     const closeMenu = () => setIsMenuOpen(false);
 
+
+    const handleLogout = () => {
+        if (confirm("Do you really want to Logout?")) {
+            signOut();
+        }
+    }
+
     return (
         <nav className="navbar">
             {/* Logo */}
             <a href="/" className="navbar-logo">
-                We-Soccer
+                <Image
+                    src={`${baseUrl}/asset/icon/home-icon.svg`}
+                    alt="Logo"
+                    width={30}
+                    height={30}
+                    className="img-banner mx-auto"
+                    priority
+                />
             </a>
 
             {/* Full Menu for Desktop */}
@@ -122,13 +139,13 @@ const NavBar = () => {
                     <svg width={25} height={25} viewBox="0 0 24 24" fill="#ffffff"
                          xmlns="http://www.w3.org/2000/svg">
                         <path fillRule="evenodd" clipRule="evenodd"
-                          d="M4 11C4 7.13401 7.13401 4 11 4C14.866 4 18 7.13401 18 11C18 14.866 14.866 18 11 18C7.13401 18 4 14.866 4 11ZM11 2C6.02944 2 2 6.02944 2 11C2 15.9706 6.02944 20 11 20C13.125 20 15.078 19.2635 16.6177 18.0319L20.2929 21.7071C20.6834 22.0976 21.3166 22.0976 21.7071 21.7071C22.0976 21.3166 22.0976 20.6834 21.7071 20.2929L18.0319 16.6177C19.2635 15.078 20 13.125 20 11C20 6.02944 15.9706 2 11 2Z"
-                          fill="#ffffff"/>
+                              d="M4 11C4 7.13401 7.13401 4 11 4C14.866 4 18 7.13401 18 11C18 14.866 14.866 18 11 18C7.13401 18 4 14.866 4 11ZM11 2C6.02944 2 2 6.02944 2 11C2 15.9706 6.02944 20 11 20C13.125 20 15.078 19.2635 16.6177 18.0319L20.2929 21.7071C20.6834 22.0976 21.3166 22.0976 21.7071 21.7071C22.0976 21.3166 22.0976 20.6834 21.7071 20.2929L18.0319 16.6177C19.2635 15.078 20 13.125 20 11C20 6.02944 15.9706 2 11 2Z"
+                              fill="#ffffff"/>
                     </svg>
                 </span>
                 <span className="menu-icon" onClick={openMenu}>☰</span>
             </div>
-
+            <button onClick={handleLogout}>Log Out</button>
             {/* Mobile Menu */}
             {isMenuOpen && (
                 <div className={`mobile-menu ${isMenuOpen ? 'open' : ''}`}>

@@ -1,5 +1,5 @@
 "use client"
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import useAuthMutation from "@/lib/hooks/useAuthMutation";
 import {useRouter} from "next/navigation";
 import {Spinner} from "react-bootstrap";
@@ -11,16 +11,18 @@ const GeneratePinCode = () => {
     const router = useRouter();
     const generatePinCodeMutation = useAuthMutation.useGeneratePinCode();
     const [email, setEmail] = useState("")
-    console.log("generatePinCodeMutation.data", generatePinCodeMutation.data)
+    console.log("generatePinCodeMutation.data", generatePinCodeMutation)
     const handleGeneratePinCode = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         generatePinCodeMutation.mutation(email);
     }
 
-    if (generatePinCodeMutation.isSuccess) {
-        const queryString = `?email=${encodeURIComponent(email)}`;
-        router.push(`/verify-pincode${queryString}`);
-    }
+    useEffect(() => {
+        if (generatePinCodeMutation.isSuccess) {
+            const queryString = `?email=${encodeURIComponent(email)}`;
+            router.push(`/verify-pincode${queryString}`);
+        }
+    }, [generatePinCodeMutation.isSuccess, email, router]);
 
     return (
         <div className="container">
