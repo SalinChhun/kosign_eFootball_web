@@ -2,6 +2,7 @@
 import {Standings} from "@/components/Standings";
 import CustomTable from "@/components/shared/CustomTable";
 import {ColumnDef} from "@tanstack/react-table";
+import {Suspense} from "react";
 
 export default function Table() {
 
@@ -403,12 +404,14 @@ export default function Table() {
                             <h2 className="text-xl font-bold text-white">Premier League</h2>
                         </div>
                         <div className="overflow-x-auto">
-                            <CustomTable
-                                data={mockStandings || []}
-                                defaultColumns={defaultTableColumns}
-                                total_page={mockStandings.length}
-                            />
-                            <Standings teams={mockStandings}/>
+                            <Suspense fallback={<div>Loading...</div>}>
+                                <CustomTable
+                                    data={mockStandings || []}
+                                    defaultColumns={defaultTableColumns}
+                                    total_page={mockStandings.length}
+                                />
+                                <Standings teams={mockStandings}/>
+                            </Suspense>
                         </div>
                     </div>
                 </div>
