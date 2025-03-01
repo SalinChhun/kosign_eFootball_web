@@ -2,7 +2,6 @@ import {useEffect, useState} from "react";
 import {Button, Modal} from 'react-bootstrap';
 import {useQueryClient} from "@tanstack/react-query";
 import useFetchModel from "@/lib/hooks/useFetchModel";
-import useFetchColor from "@/lib/hooks/useFetchColor";
 import {useProductMutation} from "@/lib/hooks/useProductMutation";
 import {CreateProductRequest} from "@/lib/types/common";
 
@@ -16,18 +15,7 @@ const CreateProduct = () => {
 
     const createProductMutation = useProductMutation.useCreateProduct();
     const {model_list} = useFetchModel();
-    const {color_list} = useFetchColor();
     const [model, setModel] = useState(model_list.length > 0 ? model_list[0]?.id : 0);
-    const [color, setColor] = useState(color_list.length > 0 ? color_list[0]?.id : 0);
-
-    useEffect(() => {
-        if (model_list?.length > 0) {
-            setModel(model_list[0]?.id);
-        }
-        if (color_list?.length > 0) {
-            setColor(color_list[0]?.id);
-        }
-    }, [model_list, color_list]);
 
     // console.log("model", model);
     // console.log("color", color);
@@ -36,7 +24,7 @@ const CreateProduct = () => {
     const handleSubmit = () => {
         const request: CreateProductRequest = {
             model_id: model,
-            color_id: color,
+            color_id: 1,
             product_image: []
 
         }
@@ -82,19 +70,19 @@ const CreateProduct = () => {
                                 <label className="form-label">
                                     Select color Name
                                 </label>
-                                <select name="categoryId" className="form-select" aria-label="Default select example"
-                                        onChange={(e) => {
-                                            const value = parseInt(e.target.value);
-                                            if (!isNaN(value)) {
-                                                setColor(value);
-                                            }
-                                        }}
-                                >
-                                    {color_list?.map((color: any) => (
-                                        // eslint-disable-next-line react/jsx-key
-                                        <option value={color?.id}>{color?.color_name}</option>
-                                    ))}
-                                </select>
+                                {/*<select name="categoryId" className="form-select" aria-label="Default select example"*/}
+                                {/*        onChange={(e) => {*/}
+                                {/*            const value = parseInt(e.target.value);*/}
+                                {/*            if (!isNaN(value)) {*/}
+                                {/*                setColor(value);*/}
+                                {/*            }*/}
+                                {/*        }}*/}
+                                {/*>*/}
+                                {/*    {color_list?.map((color: any) => (*/}
+                                {/*        // eslint-disable-next-line react/jsx-key*/}
+                                {/*        <option value={color?.id}>{color?.color_name}</option>*/}
+                                {/*    ))}*/}
+                                {/*</select>*/}
                             </div>
                         </form>
 

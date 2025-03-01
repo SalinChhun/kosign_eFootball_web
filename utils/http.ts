@@ -2,7 +2,7 @@ import axios from "axios";
 import {getSession, signOut} from "next-auth/react";
 
 export const http = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_PHONE_SHOP_API_URL,
+    baseURL: process.env.NEXT_PUBLIC_WE_SOCCER_API_URL,
 });
 
 http.interceptors.request.use(async (request) => {

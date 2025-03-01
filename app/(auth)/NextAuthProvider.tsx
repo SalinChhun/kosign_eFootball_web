@@ -5,7 +5,6 @@ import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import toast, {Toaster, useToasterStore} from "react-hot-toast";
 // import { Tooltip } from 'react-tooltip';
 import {usePathname, useSearchParams} from "next/navigation";
-import {Router} from "next/router";
 
 const queryClient = new QueryClient({
     defaultOptions: {

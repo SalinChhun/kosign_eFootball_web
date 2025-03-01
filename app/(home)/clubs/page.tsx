@@ -1,40 +1,29 @@
 "use client"
 
 import {useState} from "react";
-import { Search, RotateCcw } from "lucide-react";
+import {RotateCcw} from "lucide-react";
+import useFetchSeason from "@/lib/hooks/useFetchSeason";
+import useFetchClubs from "@/lib/hooks/useFetchClub";
+import {usePathname, useRouter, useSearchParams} from "next/navigation";
 
-interface Club {
-    id: number;
-    name: string;
-    logo: string;
-    color: string;
-}
-
-const mockClubs: Club[] = [
-    { id: 1, name: "Arsenal", logo: "/lovable-uploads/e1915e74-7933-4bec-90bc-b3984edf4950.png", color: "border-red-500" },
-    { id: 2, name: "Aston Villa", logo: "/lovable-uploads/e1915e74-7933-4bec-90bc-b3984edf4950.png", color: "border-blue-800" },
-    { id: 3, name: "Bournemouth", logo: "/lovable-uploads/e1915e74-7933-4bec-90bc-b3984edf4950.png", color: "border-red-700" },
-    { id: 4, name: "Brentford", logo: "/lovable-uploads/e1915e74-7933-4bec-90bc-b3984edf4950.png", color: "border-red-600" },
-    { id: 5, name: "Brighton & Hove Albion", logo: "/lovable-uploads/e1915e74-7933-4bec-90bc-b3984edf4950.png", color: "border-blue-500" },
-    { id: 6, name: "Chelsea", logo: "/lovable-uploads/e1915e74-7933-4bec-90bc-b3984edf4950.png", color: "border-blue-600" },
-    { id: 7, name: "Crystal Palace", logo: "/lovable-uploads/e1915e74-7933-4bec-90bc-b3984edf4950.png", color: "border-blue-700" },
-    { id: 8, name: "Everton", logo: "/lovable-uploads/e1915e74-7933-4bec-90bc-b3984edf4950.png", color: "border-blue-600" },
-    { id: 9, name: "Fulham", logo: "/lovable-uploads/e1915e74-7933-4bec-90bc-b3984edf4950.png", color: "border-gray-800" },
-    { id: 10, name: "Liverpool", logo: "/lovable-uploads/e1915e74-7933-4bec-90bc-b3984edf4950.png", color: "border-red-600" },
-    { id: 11, name: "Manchester City", logo: "/lovable-uploads/e1915e74-7933-4bec-90bc-b3984edf4950.png", color: "border-blue-500" },
-    { id: 12, name: "Manchester United", logo: "/lovable-uploads/e1915e74-7933-4bec-90bc-b3984edf4950.png", color: "border-red-600" },
-    { id: 13, name: "Newcastle United", logo: "/lovable-uploads/e1915e74-7933-4bec-90bc-b3984edf4950.png", color: "border-black" },
-    { id: 14, name: "Nottingham Forest", logo: "/lovable-uploads/e1915e74-7933-4bec-90bc-b3984edf4950.png", color: "border-red-700" },
-    { id: 15, name: "Tottenham Hotspur", logo: "/lovable-uploads/e1915e74-7933-4bec-90bc-b3984edf4950.png", color: "border-blue-900" },
-];
 
 export default function Clubs() {
-    const [searchTerm, setSearchTerm] = useState("");
-    const [selectedSeason, setSelectedSeason] = useState("2024/25");
 
-    const filteredClubs = mockClubs.filter(club =>
-        club.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    const router = useRouter();
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
+    const [searchTerm, setSearchTerm] = useState("");
+    const [selectedSeason, setSelectedSeason] = useState(searchParams.get("season_id") || "");
+
+    const {season_list} = useFetchSeason();
+    const {club_list} = useFetchClubs();
+    console.log("club_list ", club_list);
+
+    const filteredClubs = Array.isArray(club_list)
+        ? club_list.filter(club =>
+            club.name.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+        : [];
 
     return (
         <div className="min-h-screen bg-gray-50">
@@ -65,10 +54,15 @@ export default function Clubs() {
                             <select
                                 className="w-full border rounded-md p-2"
                                 value={selectedSeason}
-                                onChange={(e) => setSelectedSeason(e.target.value)}
+                                onChange={(e) => {
+                                    router.push(`${pathname}?season_id=${e.target.value.toString()}`)
+                                    setSelectedSeason(e.target.value)
+                                }}
                             >
-                                <option value="2024/25">2024/25</option>
-                                <option value="2023/24">2023/24</option>
+                                <option value="">All</option>
+                                {season_list?.map((season: any) => (
+                                    <option key={season?.id} value={season?.id}>{season?.name}</option>
+                                ))}
                             </select>
                         </div>
                         <button
@@ -91,15 +85,17 @@ export default function Clubs() {
                             key={club.id}
                             className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer group"
                         >
-                            <div className={`p-6 border-t-4 ${club.color} rounded-t-lg`}>
+                            {/*<div className={`p-6 border-t-4 ${club.color} rounded-t-lg`}>*/}
+                            <div className={`p-6 border-t-4 rounded-t-lg`}>
+
                                 <div className="flex flex-col items-center text-center">
                                     <img
-                                        src={club.logo}
-                                        alt={club.name}
+                                        src={club?.image}
+                                        alt={club?.name}
                                         className="w-24 h-24 mb-4 transition-transform group-hover:scale-110"
                                     />
                                     <h3 className="text-lg font-semibold text-gray-900">
-                                        {club.name}
+                                        {club?.name}
                                     </h3>
                                 </div>
                             </div>
