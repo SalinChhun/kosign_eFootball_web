@@ -1,7 +1,6 @@
 "use client"
 import {signOut} from "next-auth/react";
 import useFetchProducts from "@/lib/hooks/useFetchProducts";
-import CreateProduct from "@/components/ui/products/CreateProduct";
 import {getCoreRowModel, useReactTable, VisibilityState} from "@tanstack/react-table";
 import {useSortingState} from "@/lib/hooks/useSortingState";
 import React from "react";
@@ -50,7 +49,6 @@ const ProductList = () => {
 
     return (
         <>
-            <CreateProduct/>
             <ProductModal/>
             <div id="ks_wt_app_main_content" className="ks_d_flex ks_flex_col ks_h100">
                 <div className="ks_d_flex ks_flex_col ks_mt_auto ks_h100">

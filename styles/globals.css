@@ -205,3 +205,35 @@ a.cur_act .svg-icon {
 .cursor-pointer {
     cursor: pointer;
 }
+.ks_ptb10_plr25 {
+    padding: 0.625rem 1.563rem !important;
+}
+.ks-wb-image-picker-wrapper-gray-bg {
+    width: 120px !important;
+    height: 120px !important;
+    flex-shrink: 0 !important;
+    border-radius: 8px !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    background-color: #FAFAFA !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    position: relative !important;
+}
+.ks-wb-image-picker-new {
+    width: 50px !important;
+    height: 50px !important;
+    padding: 10px !important;
+    border-radius: 100% !important;
+    background: #fff !important;
+    box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.15) !important;
+    display: inline-flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    flex-shrink: 0 !important;
+    gap: 10px !important;
+    transform: translate(-50%, -50%) !important;
+    position: absolute !important;
+    top: 40% !important;
+    left: 50% !important;
+}

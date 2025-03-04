@@ -5,6 +5,7 @@ import {http} from "@/utils/http";
 
 const ServiceId = {
     LOGIN: '/api/v1/auth/login',
+    LOGOUT: '/api/wb/v1/auth/logout',
     THIRD_PARTY_LOGIN: '/api/v1/auth/third-party/login',
     SIGNUP: '/api/v1/auth/register',
     GENERATE_PIN_CODE: '/api/v1/auth/generatePinCode',
@@ -18,6 +19,10 @@ const signup = (data: SignUpRequest) => {
 
 const login = (data: AuthRequest) => {
     return http.post(ServiceId.LOGIN, data);
+}
+
+const logout = () => {
+    return http.post(ServiceId.LOGOUT);
 }
 
 const thirdPartyLogin = (data: AuthRequest) => {
@@ -39,6 +44,7 @@ const resetPassword = (data: any) => {
 export const authService = {
     signup,
     login,
+    logout,
     thirdPartyLogin,
     generatePinCode,
     verifyPinCode,

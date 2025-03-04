@@ -1,4 +1,9 @@
 export interface SeasonResponse {
-    season_id: number;
+    id: number;
+    name: string;
+}
+
+export interface UpdateSeasonRequest {
+    season_id: string;
     season_name: string;
 }
