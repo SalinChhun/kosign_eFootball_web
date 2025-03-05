@@ -6,6 +6,7 @@ import "@/styles/we-football.css";
 import "@/styles/home-page.css";
 import {toast, Toaster, useToasterStore} from "react-hot-toast";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
+import {SessionProvider} from "next-auth/react";
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -40,9 +41,11 @@ export default function HomeLayout({children}: PropsWithChildren) {
             }}/>
         <NavBar/>
         <div className="h-full bg-neutral-900 relative w-full pt-[60px]">
-            <QueryClientProvider client={queryClient}>
-                {children}
-            </QueryClientProvider>
+            <SessionProvider>
+                <QueryClientProvider client={queryClient}>
+                    {children}
+                </QueryClientProvider>
+            </SessionProvider>
             {/*<ShootingStars/>*/}
             {/*<StarsBackground/>*/}
         </div>

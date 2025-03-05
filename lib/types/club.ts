@@ -5,6 +5,13 @@ export interface ClubResponse {
     "seasons": SeasonResponse[]
 }
 
+export interface ClubRequest {
+    "club_name": string,
+    "club_logo": string,
+    "season_ids": number[]
+}
+
+
 export interface SeasonResponse {
     "season_id": number,
     "season_name": string

@@ -39,6 +39,16 @@ export default function Clubs() {
         }
     };
 
+    const handleSearchClick = () => {
+        const params = new URLSearchParams(searchParams.toString());
+        if (searchTerm.trim()) {
+            params.set("club_name", searchTerm.trim());
+        } else {
+            params.delete("club_name");
+        }
+        router.push(`/clubs?${params.toString()}`);
+    }
+
 
     return (
         <>
@@ -47,15 +57,25 @@ export default function Clubs() {
                 <div className="bg-gradient-to-r from-[#121b30] via-[#121b40] to-[#121b30]">
                     <div className="container mx-auto px-4 py-12">
                         <h1 className="text-5xl font-bold text-white mb-8">Clubs</h1>
-                        <div className="flex gap-2">
+                        <div className="relative w-full max-w-xl">
                             <input
                                 type="text"
                                 onKeyDown={handleSearchEnter}
                                 placeholder="Search Clubs"
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="bg-white text-purple-900 px-6 py-1 font-medium rounded-lg text-lg focus:outline-none focus:ring-2 focus:ring-purple-300"
+                                className="w-full pl-6 pr-12 text-lg text-gray-900 bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-lg"
                             />
+                            <button
+                                className="absolute right-1 top-1/2 -translate-y-1/2 bg-blue-500 text-white p-2 rounded-full"
+                                onClick={handleSearchClick}
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none"
+                                     viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                                </svg>
+                            </button>
                         </div>
                     </div>
                 </div>

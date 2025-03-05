@@ -1,13 +1,13 @@
 import {http} from "@/utils/http";
-import {ClubResponse} from "@/lib/types/club";
+import {ClubRequest, ClubResponse} from "@/lib/types/club";
 
 const ServiceId = {
     CLUB: '/api/v1',
 }
 
-// const createProduct = (requestBody: any) => {
-//     return http.post(ServiceId.PRODUCT + '/createNewProduct',requestBody);
-// }
+const createClub = (requestBody: ClubRequest) => {
+    return http.post(ServiceId.CLUB + '/club',requestBody);
+}
 
 const getAllClubs = async (params: any): Promise<ClubResponse[]> => {
     const result = await http.get(ServiceId.CLUB + `/clubs`, {params});
@@ -16,5 +16,5 @@ const getAllClubs = async (params: any): Promise<ClubResponse[]> => {
 
 export const clubService = {
     getAllClubs,
-    // createProduct
+    createClub
 }

@@ -36,3 +36,11 @@ export const useGeneratePinCodeStore = create<{
     password: '',
     setIsLoading: (isLoading: boolean) => set((state): any => ({...state, isLoading})),
 }));
+
+export const useUploadImageStore = create<{
+    imageUrl: any,
+    setImageUrl: (imageUrl: any) => void
+}>(set => ({
+    imageUrl: '',
+    setImageUrl: (imageUrl: any) => set((state): any => ({...state, imageUrl})),
+}));
