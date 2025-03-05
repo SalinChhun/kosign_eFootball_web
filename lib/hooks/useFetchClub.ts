@@ -11,7 +11,7 @@ const useFetchClubs = () =>{
     }
 
     const {data,  isLoading, isError} = useQuery({
-        queryKey: ["clubs"],
+        queryKey: ["clubs", {reqParams}],
         queryFn: () => clubService.getAllClubs(reqParams)
     });
 

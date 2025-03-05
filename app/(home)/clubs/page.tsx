@@ -1,9 +1,8 @@
 'use client';
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import useFetchSeason from "@/lib/hooks/useFetchSeason";
 import useFetchClubs from "@/lib/hooks/useFetchClub";
 import {useRouter, useSearchParams} from "next/navigation";
-import {ClubResponse} from "@/lib/types/club";
 import CreateClub from "@/components/ui/CreateClub";
 
 
@@ -15,47 +14,11 @@ export default function Clubs() {
     const [selectedSeason, setSelectedSeason] = useState("");
     const [createClubPopup, setCreateClubPopup] = useState(false);
     console.log('createClubPopup ', createClubPopup)
-    const [filteredClubs, setFilteredClubs] = useState<ClubResponse[]>([]);
     const baseUrl = `${process.env.NEXT_PUBLIC_BASE_PATH}`;
     const {season_list} = useFetchSeason();
     const {club_list} = useFetchClubs();
     console.log("club_list ", club_list);
 
-    // Initialize selected season from URL if available
-    useEffect(() => {
-        const seasonId = searchParams.get("season_id");
-        console.log("seasonId ", seasonId);
-        if (seasonId) {
-            setSelectedSeason(seasonId);
-        }
-    }, [searchParams]);
-
-    // Filter clubs based on search term and selected season
-    useEffect(() => {
-        if (!club_list) return;
-
-        let filtered = Array.isArray(club_list)
-            ? club_list.filter(club =>
-                club.name.toLowerCase().includes(searchTerm.toLowerCase())
-            )
-            : [];
-
-        // Further filter by season if selected
-        if (selectedSeason) {
-            filtered = filtered.filter(club =>
-                club.seasons &&
-                club.seasons.some(season => season.season_id.toString() === selectedSeason)
-            );
-        }
-
-        setFilteredClubs(filtered);
-    }, [club_list, searchTerm, selectedSeason]);
-
-    // const filteredClubs = Array.isArray(club_list)
-    //     ? club_list.filter(club =>
-    //         club.name.toLowerCase().includes(searchTerm.toLowerCase())
-    //     )
-    //     : [];
 
     const handleSeasonChange = (seasonId: any) => {
         const params = new URLSearchParams(searchParams.toString());
@@ -63,6 +26,19 @@ export default function Clubs() {
         router.push(`/clubs?${params.toString()}`);
         setSelectedSeason(seasonId);
     };
+
+    const handleSearchEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === "Enter") {
+            const params = new URLSearchParams(searchParams.toString());
+            if (searchTerm.trim()) {
+                params.set("club_name", searchTerm.trim());
+            } else {
+                params.delete("club_name");
+            }
+            router.push(`/clubs?${params.toString()}`);
+        }
+    };
+
 
     return (
         <>
@@ -74,6 +50,7 @@ export default function Clubs() {
                         <div className="flex gap-2">
                             <input
                                 type="text"
+                                onKeyDown={handleSearchEnter}
                                 placeholder="Search Clubs"
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
@@ -117,8 +94,8 @@ export default function Clubs() {
 
                     {/* Clubs Grid */}
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-12">
-                        {filteredClubs.length > 0 ? (
-                            filteredClubs.map((club) => (
+                        {club_list.length > 0 ? (
+                            club_list.map((club) => (
                                 <div
                                     key={club.id}
                                     className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer group"

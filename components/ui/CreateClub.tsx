@@ -182,13 +182,13 @@ function CreateClub({show, onClose}: { show: boolean; onClose?: () => void }) {
                                         <div className="flex gap-2">
                                             <button
                                                 onClick={handleDeleteImage}
-                                                className="px-4 py-1 bg-red-500 text-white rounded-md hover:bg-red-600"
+                                                className="px-4 py-1 bg-[#501414FF] text-white rounded-md hover:bg-red-600"
                                             >
                                                 Delete
                                             </button>
                                             <label
                                                 htmlFor="replaceImage"
-                                                className="px-4 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-600 cursor-pointer"
+                                                className="px-4 py-1 bg-[#121b40] text-white rounded-md hover:bg-[#283C8CFF] cursor-pointer"
                                             >
                                                 Replace Image
                                             </label>
@@ -295,13 +295,16 @@ function CreateClub({show, onClose}: { show: boolean; onClose?: () => void }) {
                                                     />
                                                     <button
                                                         type="button"
-                                                        className="text-green-500 hover:text-green-700"
+                                                        className="bg-[#121b40] hover:bg-[#283C8CFF] rounded-md p-[7px] ks-txt-white"
                                                         onClick={handleAddNewSeason}
                                                     >
-                                                        ✔
+                                                        <span className="text-white">✔</span>
                                                     </button>
-                                                    <button onClick={() => setAddingSeason(false)}
-                                                            className="text-red-500 hover:text-red-700">✖
+                                                    <button
+                                                        className="bg-[#501414FF] hover:text-green-700 rounded-md p-[7px]"
+                                                        onClick={() => setAddingSeason(false)}
+                                                    >
+                                                        <span className="text-red-900">❌</span>
                                                     </button>
                                                 </div>
                                             ) : (
@@ -324,7 +327,7 @@ function CreateClub({show, onClose}: { show: boolean; onClose?: () => void }) {
                                     className="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 focus:outline-none">Cancel
                             </button>
                             <button
-                                className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none">Save
+                                className="px-4 py-2 bg-[#121b40] text-white rounded-md hover:bg-[#283C8CFF] focus:outline-none">Save
                             </button>
                         </div>
                     </div>
