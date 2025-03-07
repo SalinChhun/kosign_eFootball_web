@@ -139,7 +139,19 @@ export default function Clubs() {
                                         setCreateClubPopup(true);
                                     }}
                                 >
-                                    <span>Create Club</span>
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="h-5 w-5"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeWidth="2"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    >
+                                        <path d="M12 4v16m8-8H4"/>
+                                    </svg>
+                                    <span className="font-medium">Create Club</span>
                                 </button>
                             }
                         </div>
