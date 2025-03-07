@@ -17,3 +17,10 @@ export interface SeasonResponse {
     "season_name": string
 }
 
+export interface UpdateClubRequest {
+    club_id: number,
+    "club_name": string,
+    "club_logo": string,
+    "season_ids": number[]
+}
+

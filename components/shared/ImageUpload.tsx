@@ -1,22 +1,22 @@
 "use client";
 import React, {useRef, useState} from "react";
-import {useSession} from "next-auth/react";
 import {IKUpload, ImageKitProvider} from "imagekitio-next";
 import {useUploadImageStore} from "@/lib/store/store";
 
-export default function ImageUpload() {
-    const session = useSession();
+export default function ImageUpload({image}: { image?: any}) {
+
     const publicKey = process.env.NEXT_PUBLIC_PUBLIC_KEY;
     const urlEndpoint = process.env.NEXT_PUBLIC_URL_ENDPOINT;
 
     const fileInputRef = useRef<HTMLInputElement>(null);
     const [uploadLoading, setUploadLoading] = useState(false);
-    const [imagePreview, setImagePreview] = useState<string | null>(null);
+    const [imagePreview, setImagePreview] = useState<string | null>(image || null);
     const [uploadError, setUploadError] = useState<string | null>(null);
     const {setImageUrl} = useUploadImageStore(state => state);
 
     const handleDeleteImage = () => {
         // Reset all states related to image upload
+        setImageUrl(null);
         setImagePreview(null);
         setUploadError(null);
         setUploadLoading(false);

@@ -21,3 +21,12 @@ export interface ResetPasswordRequest {
     newPassword: string;
     confirmNewPassword: string;
 }
+
+export interface Session {
+    data: SessionUser;
+}
+
+export interface SessionUser {
+    role: string;
+    sub: string;
+}

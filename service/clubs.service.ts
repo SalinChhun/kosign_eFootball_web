@@ -1,5 +1,5 @@
 import {http} from "@/utils/http";
-import {ClubRequest, ClubResponse} from "@/lib/types/club";
+import {ClubRequest, ClubResponse, UpdateClubRequest} from "@/lib/types/club";
 
 const ServiceId = {
     CLUB: '/api/v1',
@@ -14,7 +14,17 @@ const getAllClubs = async (params: any): Promise<ClubResponse[]> => {
     return result.data?.data;
 }
 
+const updateClub = (requestBody: UpdateClubRequest) => {
+    return http.put(ServiceId.CLUB + '/club',requestBody);
+}
+
+const deleteClub = (clubId: any) => {
+    return http.delete(ServiceId.CLUB + `/club/${clubId}`);
+}
+
 export const clubService = {
     getAllClubs,
-    createClub
+    createClub,
+    updateClub,
+    deleteClub
 }

@@ -4,14 +4,15 @@ import useFetchSeason from "@/lib/hooks/useFetchSeason";
 import {useMutation, useQueryClient} from "@tanstack/react-query";
 import {seasonService} from "@/service/season.service";
 import toast from "react-hot-toast";
-import {Modal, Spinner} from "react-bootstrap";
+import {Modal} from "react-bootstrap";
 import {UpdateSeasonRequest} from "@/lib/types/season";
 import ImageUpload from "@/components/shared/ImageUpload";
 import {useUploadImageStore} from "@/lib/store/store";
-import {ClubRequest} from "@/lib/types/club";
+import {UpdateClubRequest} from "@/lib/types/club";
 import {clubService} from "@/service/clubs.service";
+import {Spinner} from "react-bootstrap";
 
-function CreateClub({show, onClose}: { show: boolean; onClose?: () => void }) {
+function UpdateClubForm({show, onClose, updateData}: { show: boolean; onClose?: () => void, updateData?: any }) {
 
     const queryClient = useQueryClient();
     const {season_list} = useFetchSeason();
@@ -19,16 +20,17 @@ function CreateClub({show, onClose}: { show: boolean; onClose?: () => void }) {
     const [isUpdate, setIsUpdate] = useState(false);
     const [updateSeasonId, setUpdateSeasonId] = useState("");
     const [newSeason, setNewSeason] = useState("");
-    const [newClubName, setNewClubName] = useState("");
+    const [newClubName, setNewClubName] = useState(updateData?.name || "");
     const {imageUrl, setImageUrl} = useUploadImageStore(state => state);
     const [isCreateClubLoading, setIsCreateClubLoading] = useState(false);
     const [isSeasonLoading, setIsSeasonLoading] = useState(false);
 
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [addingSeason, setAddingSeason] = useState(false);
-    const [selectedSeasons, setSelectedSeasons] = useState<any[]>([]);
     const [hoveredSeason, setHoveredSeason] = useState<string | null>(null);
-
+    const [selectedSeasons, setSelectedSeasons] = useState<any[]>(
+        updateData?.seasons?.map((season: { season_id: number }) => season.season_id) || []
+    );
 
     if (!show) return null;
 
@@ -71,17 +73,18 @@ function CreateClub({show, onClose}: { show: boolean; onClose?: () => void }) {
         }
     };
 
-    const handleCreateClub = () => {
+    const handleUpdateClub = () => {
         if (selectedSeasons.length === 0) {
             toast.error("Please select at least one season");
         } else {
             setIsCreateClubLoading(true);
-            const requestBody: ClubRequest = {
+            const requestBody: UpdateClubRequest = {
+                club_id: updateData?.id,
                 club_name: newClubName,
                 club_logo: imageUrl,
                 season_ids: selectedSeasons,
             };
-            createClubMutation.mutate(requestBody);
+            updateClubMutation.mutate(requestBody);
         }
     }
 
@@ -127,7 +130,7 @@ function CreateClub({show, onClose}: { show: boolean; onClose?: () => void }) {
         }
     })
 
-    const createClubMutation = useMutation((req: ClubRequest) => clubService.createClub(req), {
+    const updateClubMutation = useMutation((req: UpdateClubRequest) => clubService.updateClub(req), {
         onError: (error: any) => {
             toast.error(error?.message)
             setIsCreateClubLoading(false);
@@ -137,7 +140,7 @@ function CreateClub({show, onClose}: { show: boolean; onClose?: () => void }) {
             setIsCreateClubLoading(false);
             setImageUrl(null);
             onClose?.();
-            toast.success("Create Club Successfully");
+            toast.success("Updated Club Successfully");
         }
     })
 
@@ -153,7 +156,7 @@ function CreateClub({show, onClose}: { show: boolean; onClose?: () => void }) {
                     <div className="bg-white rounded-lg shadow-xl w-full max-w-md">
                         {/* Header */}
                         <div className="flex justify-between items-center p-4 border-b">
-                            <h3 className="text-lg font-semibold">Create Club</h3>
+                            <h3 className="text-lg font-semibold">Update Club</h3>
                             <button
                                 onClick={onClose}
                                 className="text-gray-500 hover:text-gray-700 focus:outline-none"
@@ -170,12 +173,13 @@ function CreateClub({show, onClose}: { show: boolean; onClose?: () => void }) {
                             <form>
 
                                 {/* Image Upload */}
-                                <ImageUpload/>
+                                <ImageUpload image={updateData?.image}/>
 
                                 {/* Club Name */}
                                 <div className="mb-4">
                                     <label className="block text-sm font-medium text-gray-700 mb-1">Club Name</label>
                                     <input
+                                        value={newClubName}
                                         type="text"
                                         className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500"
                                         placeholder="Enter club name"
@@ -316,12 +320,12 @@ function CreateClub({show, onClose}: { show: boolean; onClose?: () => void }) {
                             <button
                                 className="px-4 py-2 bg-[#121b40] text-white rounded-md hover:bg-[#283C8CFF] focus:outline-none"
                                 disabled={isCreateClubLoading}
-                                onClick={handleCreateClub}
+                                onClick={handleUpdateClub}
                             >
                                 {
                                     isCreateClubLoading ?
-                                        <Spinner animation="border" style={{width: 18, height: 18, marginRight: 5}} role="status">
-                                        </Spinner> : "Save"
+                                    <Spinner animation="border" style={{width: 18, height: 18, marginRight: 5}} role="status">
+                                    </Spinner> : "Save"
                                 }
                             </button>
                         </div>
@@ -332,4 +336,4 @@ function CreateClub({show, onClose}: { show: boolean; onClose?: () => void }) {
     );
 }
 
-export default CreateClub;
+export default UpdateClubForm;
