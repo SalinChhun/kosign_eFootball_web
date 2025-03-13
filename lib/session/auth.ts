@@ -94,7 +94,7 @@ declare module "next-auth" {
         refreshToken?: string;
         token?: string;
         error?: string;
-        user?: User;
+        user: User;
     }
 
     interface User {
