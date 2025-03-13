@@ -30,9 +30,6 @@ function CreateClub({show, onClose}: { show: boolean; onClose?: () => void }) {
     const [hoveredSeason, setHoveredSeason] = useState<string | null>(null);
 
 
-    if (!show) return null;
-
-
     const toggleSeason = (seasonId: string) => {
         setSelectedSeasons((prev) =>
             prev.includes(seasonId) ? prev.filter((id) => id !== seasonId) : [...prev, seasonId]
@@ -141,6 +138,7 @@ function CreateClub({show, onClose}: { show: boolean; onClose?: () => void }) {
         }
     })
 
+    if (!show) return null;
 
     return (
         <>

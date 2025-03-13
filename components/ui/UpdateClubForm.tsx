@@ -32,8 +32,6 @@ function UpdateClubForm({show, onClose, updateData}: { show: boolean; onClose?: 
         updateData?.seasons?.map((season: { season_id: number }) => season.season_id) || []
     );
 
-    if (!show) return null;
-
 
     const toggleSeason = (seasonId: string) => {
         setSelectedSeasons((prev) =>
@@ -143,6 +141,8 @@ function UpdateClubForm({show, onClose, updateData}: { show: boolean; onClose?: 
             toast.success("Updated Club Successfully");
         }
     })
+
+    if (!show) return null;
 
 
     return (
