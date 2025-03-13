@@ -16,34 +16,46 @@ import ClubListSkeleton from "@/components/shared/ClubListSkeleton";
 
 export default function Clubs() {
 
-    const router = useRouter();
-    const queryClient = useQueryClient();
-    const searchParams = useSearchParams();
-    const [searchTerm, setSearchTerm] = useState("");
-    const [selectedSeason, setSelectedSeason] = useState("");
-    const [createClubPopup, setCreateClubPopup] = useState(false);
-    const [updateClubPopup, setUpdateClubPopup] = useState(false);
-    const [updateClubData, setUpdateClubData] = useState({});
-    const {setImageUrl} = useUploadImageStore(state => state);
-    console.log('createClubPopup ', createClubPopup)
-    const baseUrl = `${process.env.NEXT_PUBLIC_BASE_PATH}`;
-    const {season_list} = useFetchSeason();
-    const {club_list, isLoading} = useFetchClubs();
-    console.log("isLoading ", isLoading);
-    const session = useSession();
-    console.log("session ", session?.data?.user?.role);
-    console.log("club_list ", club_list);
+    function ClubsContent() {
+        const router = useRouter();
+        const queryClient = useQueryClient();
+        const searchParams = useSearchParams();
+        const [searchTerm, setSearchTerm] = useState("");
+        const [selectedSeason, setSelectedSeason] = useState("");
+        const [createClubPopup, setCreateClubPopup] = useState(false);
+        const [updateClubPopup, setUpdateClubPopup] = useState(false);
+        const [updateClubData, setUpdateClubData] = useState({});
+        const {setImageUrl} = useUploadImageStore(state => state);
+        console.log('createClubPopup ', createClubPopup)
+        const baseUrl = `${process.env.NEXT_PUBLIC_BASE_PATH}`;
+        const {season_list} = useFetchSeason();
+        const {club_list, isLoading} = useFetchClubs();
+        console.log("isLoading ", isLoading);
+        const session = useSession();
+        console.log("session ", session?.data?.user?.role);
+        console.log("club_list ", club_list);
 
 
-    const handleSeasonChange = (seasonId: any) => {
-        const params = new URLSearchParams(searchParams.toString());
-        params.set("season_id", seasonId);
-        router.push(`/clubs?${params.toString()}`);
-        setSelectedSeason(seasonId);
-    };
+        const handleSeasonChange = (seasonId: any) => {
+            const params = new URLSearchParams(searchParams.toString());
+            params.set("season_id", seasonId);
+            router.push(`/clubs?${params.toString()}`);
+            setSelectedSeason(seasonId);
+        };
 
-    const handleSearchEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === "Enter") {
+        const handleSearchEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+            if (e.key === "Enter") {
+                const params = new URLSearchParams(searchParams.toString());
+                if (searchTerm.trim()) {
+                    params.set("club_name", searchTerm.trim());
+                } else {
+                    params.delete("club_name");
+                }
+                router.push(`/clubs?${params.toString()}`);
+            }
+        };
+
+        const handleSearchClick = () => {
             const params = new URLSearchParams(searchParams.toString());
             if (searchTerm.trim()) {
                 params.set("club_name", searchTerm.trim());
@@ -52,37 +64,25 @@ export default function Clubs() {
             }
             router.push(`/clubs?${params.toString()}`);
         }
-    };
 
-    const handleSearchClick = () => {
-        const params = new URLSearchParams(searchParams.toString());
-        if (searchTerm.trim()) {
-            params.set("club_name", searchTerm.trim());
-        } else {
-            params.delete("club_name");
+        const deleteClubMutation = useMutation((req: string) => clubService.deleteClub(req), {
+            onError: (error: any) => {
+                toast.error(error?.message)
+            },
+            onSuccess: (data: any) => {
+                queryClient.invalidateQueries(['clubs']);
+                toast.success("Delete Club Successfully");
+            }
+        })
+
+        const handleDeleteClub = (clubId: any) => {
+            const confirmDelete = confirm("Are you sure you want to delete this club?");
+            if (confirmDelete) {
+                deleteClubMutation.mutate(clubId);
+            }
         }
-        router.push(`/clubs?${params.toString()}`);
-    }
 
-    const deleteClubMutation = useMutation((req: string) => clubService.deleteClub(req), {
-        onError: (error: any) => {
-            toast.error(error?.message)
-        },
-        onSuccess: (data: any) => {
-            queryClient.invalidateQueries(['clubs']);
-            toast.success("Delete Club Successfully");
-        }
-    })
-
-    const handleDeleteClub = (clubId: any) => {
-        const confirmDelete = confirm("Are you sure you want to delete this club?");
-        if (confirmDelete) {
-            deleteClubMutation.mutate(clubId);
-        }
-    }
-
-    return (
-        <Suspense fallback={<div>Loading...</div>}>
+        return(
             <>
                 <div className="min-h-screen bg-gray-50">
                     {/* Hero Section with Search */}
@@ -254,6 +254,12 @@ export default function Clubs() {
                     />
                 }
             </>
+        )
+    }
+
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <ClubsContent/>
         </Suspense>
     );
 };
