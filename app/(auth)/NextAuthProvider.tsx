@@ -1,6 +1,6 @@
 "use client";
 import {SessionProvider} from "next-auth/react";
-import {PropsWithChildren, Suspense, useEffect} from "react";
+import {PropsWithChildren, useEffect} from "react";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import toast, {Toaster, useToasterStore} from "react-hot-toast";
 // import { Tooltip } from 'react-tooltip';
@@ -70,9 +70,7 @@ export default function NextAuthProvider({children}: PropsWithChildren) {
                 }}
             />
             <QueryClientProvider client={queryClient}>
-                <Suspense fallback={null}>
-                    {children}
-                </Suspense>
+                {children}
             </QueryClientProvider>
 
             {/*<Tooltip className="ks-wt-tooltip" id="ks-wt-tooltip-id" />*/}
