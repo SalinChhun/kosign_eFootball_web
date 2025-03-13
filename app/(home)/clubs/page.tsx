@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import {useState} from "react";
 import { Suspense } from "react";
 import useFetchSeason from "@/lib/hooks/useFetchSeason";
